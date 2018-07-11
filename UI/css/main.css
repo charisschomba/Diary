@@ -1,0 +1,113 @@
+/* body css */
+
+body{
+    font-family: Arial,sans-serif,serif;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0px;
+    padding: 0px;
+    background: #E3E2DF;
+    background: url('../img/background.jpg');
+    }
+    /*  Global css */
+    .container{
+      width: 80%;
+      margin: auto;
+      height: 100%;
+    }
+    .text_centered{
+      text-align: center;
+    }
+    .submit_button{
+      background: rgb(0, 140, 255);
+      height: 40px;
+      width: 90px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .spacing{
+      margin:20px;
+      padding-bottom: 5px;
+    
+    }
+    
+    .entries{
+      padding: 20px;
+      
+    }
+    
+    /* header css */
+    
+    header{
+      background: #747474;
+      color: #ffffff;
+      padding-top:5px;
+      min-height: 70px;
+      padding-bottom: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    
+    }
+    
+    header a{
+      color: #FFFFFF;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    
+    header li{
+      float: left;
+      display: inline;
+      padding: 0px 20px 0px 20px;
+    }
+    header #branding{
+      float: left;
+    }
+    header #branding h1{
+      margin: 0;
+    }
+    
+    header nav{
+      float: right;
+    }
+    header .highlight, header .current{
+      color:blue;
+    }
+    
+    header a:hover{
+      color:blue;
+      font-weight: bold;
+    }
+    
+    /* foote css */
+    footer{
+      text-align: center;
+      background: #747474;
+      color: #ffffff;
+      padding: 20px;
+      margin-top: 20px;
+      height: 100%;
+    
+    }
+    /* fieldset */
+    fieldset{
+      width: 20%;
+      margin: auto;
+      background: #ffffff;
+      margin-top: 10px;
+    
+    }
+    /* section css */
+    section{
+      background: #ffffff;
+    }
+    section a{
+      text-decoration: none;
+    
+    }
+    section li{
+      display: inline;
+      text-transform: capitalize;
+    
+    }
