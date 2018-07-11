@@ -1,7 +1,7 @@
 /* body css */
 
 body{
-    font-family: Arial,sans-serif,serif;
+    font-family:sans-serif,Arial, Helvetica;
     font-size: 18px;
     line-height: 1.5;
     margin: 0px;
@@ -17,6 +17,10 @@ body{
     }
     .text_centered{
       text-align: center;
+    }
+    .dashboard{
+        overflow-x: auto;
+
     }
     .submit_button{
       background: rgb(0, 140, 255);
@@ -110,4 +114,50 @@ body{
       display: inline;
       text-transform: capitalize;
     
+    }
+    
+     section fieldset{
+         min-width: 70%;
+     }
+/* table css */
+     table{
+         width: 80%;
+         margin: auto;
+         border: 1px solid black;
+         border-collapse: collapse;
+         width: 100%;
+         margin-bottom: 50px;
+     }
+     table a{
+        text-decoration: none;
+        text-transform: capitalize;
+        font-size: 18px;
+        padding: 7px;
+      }
+      table a:hover {
+          background-color: blue;
+          color: #FFFFFF;
+    
+    }
+
+
+      table tr,td,th{
+        margin: auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        text-align: left;
+       
+    }
+  
+    table tr button{
+       
+       margin-right: 10px;
+       height: 20px;
+       width: 60px;
+       background: rgb(0, 140, 255);
+       
+    }
+    .td-width{
+        width: 20%;
     }
