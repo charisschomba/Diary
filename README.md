@@ -1,37 +1,13 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/charisschomba/Diary/edit/gh-pages/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/charisschomba/Diary/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Diary
+###### This Repository contains Designs for a Dairy web app with five pages.
+###### 1.index.html which is the home page.
+###### This page allows users to View all entries in their dairy.
+###### A profile section where a user can enable or disable remainder settings.
+###### 2.singup.html,this is the page where new users register's before they can log in.
+###### 3.singin.html,after successfully registering,users can now log into their accounts.
+###### 4.detail.html,this page allow users to view contents of their single entry.
+###### 5.entry.html which enables logged in users add an entry to their personal diary.
+###### 6.img folder that holds all the images used.
+###### 7.Css folder that contains the styling for the pages.
+###### URL
+https://charisschomba.github.io/Diary/UI/index.html
