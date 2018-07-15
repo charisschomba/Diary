@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/mydiary/api/v1/entries',methods = ['GET'])
 def get_items():
-    response = jsonify({'Entrie':Entries})
+    response = jsonify({'All Entries':Entries})
     return response
 
 
