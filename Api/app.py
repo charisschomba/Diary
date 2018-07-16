@@ -78,6 +78,13 @@ def delete_entry_by_id(entryId):
     Deletes an entry by it's Id
     URL path: mydiary/api/v1/entries/<int:entryId>
     """
+    entry = next(filter(lambda x: x['id'] == entryId, Entries), None)
+    if entry is None:
+        return jsonify({'message':"Entry does not exixt"}), 404
+    else:
+        Entries.remove(entry)
+
+    return jsonify({'message':'Your entry was successfully deleted'}),200
 
 if __name__ == "__main__":
     app.run(debug=True)    
