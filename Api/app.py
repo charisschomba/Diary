@@ -55,13 +55,21 @@ def get_entry_by_id(entryId):
         if entry['id'] == entryId:
             return jsonify(entry),200
     return jsonify({'Message':"Entry requested does not exist"}), 404  
-@app.route("/mydiary/api/v1/entries/<int:entryId>",methods=['POST'])
+
+@app.route("/mydiary/api/v1/entries/<int:entryId>",methods=['PUT'])
 def modify_entry_by_id(entryId):
     """
-    Method: POST
+    Method: PUT
     Modifies an entry by it's Id
     URL path: mydiary/api/v1/entries/<int:entryId>
     """
+    entry = next(filter(lambda x: x['id'] == entryId, Entries), None)
+    if entry is None:
+        return jsonify({'message':"Entry does not exixt"}), 404
+    else:
+        request_data = request.get_json()
+        entry.update(request_data)
+    return jsonify(entry),200
 
 if __name__ == "__main__":
     app.run(debug=True)    
