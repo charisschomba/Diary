@@ -44,5 +44,19 @@ def create_entry():
             return jsonify({'Message':'An error occured while processing your request'}), 500
     return (jsonify(new_entry)), 201
  
+@app.route("/mydiary/api/v1/entries<int:id>",methods=['GET'])
+def get_entry_by_id(id):
+    """
+    Method: GET
+    Fetches a single entry by it's Id
+    URL path: mydiary/api/v1/entries/<int:id>
+    """
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)    
