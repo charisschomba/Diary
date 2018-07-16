@@ -55,6 +55,13 @@ def get_entry_by_id(entryId):
         if entry['id'] == entryId:
             return jsonify(entry),200
     return jsonify({'Message':"Entry requested does not exist"}), 404  
+@app.route("/mydiary/api/v1/entries/<int:entryId>",methods=['POST'])
+def modify_entry_by_id(entryId):
+    """
+    Method: POST
+    Modifies an entry by it's Id
+    URL path: mydiary/api/v1/entries/<int:entryId>
+    """
 
 if __name__ == "__main__":
     app.run(debug=True)    
