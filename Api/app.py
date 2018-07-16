@@ -71,5 +71,13 @@ def modify_entry_by_id(entryId):
         entry.update(request_data)
     return jsonify(entry),200
 
+@app.route("/mydiary/api/v1/entries/<int:entryId>",methods=['DELETE'])
+def delete_entry_by_id(entryId):
+    """
+    Method: DELETE
+    Deletes an entry by it's Id
+    URL path: mydiary/api/v1/entries/<int:entryId>
+    """
+
 if __name__ == "__main__":
     app.run(debug=True)    
