@@ -54,4 +54,19 @@ class Entries(Resource):
                 Entry().save(new_entry)
             except:
                 return {'Message':'An error occured while processing your request'}, 500
-        return make_response(jsonify(new_entry), 201)    
+        return make_response(jsonify(new_entry), 201)   
+
+    class EntryList(Resource):
+        """
+        This resource class will have three methods,
+        a get method that get an entry by id,put method that 
+        updates an entry by id if it exists and delete method that
+        delete an entry by id.
+        """
+        def __init__(self):
+            self.parser = reqparse.RequestParser()
+            self.parser.add_argument('title', type=str, required=True,
+                            help='No task title provided',
+                            location='json')
+            self.parser.add_argument('content', type=str, default="",
+                            location='json') 
