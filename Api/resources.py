@@ -70,3 +70,43 @@ class Entries(Resource):
                             location='json')
             self.parser.add_argument('content', type=str, default="",
                             location='json') 
+
+        def get(self,entryId):
+            """
+            Method: GET
+            Fetches a single entry by it's Id
+            URL path: mydiary/api/v1/entries/<int:entryId>
+            """
+            entry = Entry().get_by_id(entryId)
+            if entry:
+                return make_response(jsonify(entry),200)
+            return {'Message':"Entry requested does not exist"}, 404
+
+        def put(self,entryId):
+            """
+            Method: PUT
+            Modifies an entry by it's Id
+            URL path: mydiary/api/v1/entries/<int:entryId>
+            """
+            entry = Entry().get_by_id(entryId)
+            if entry is None:
+                return make_response(jsonify({'message':"Entry does not exixt"}), 404)
+            else:
+                data = self.parser.parse_args()
+                Entry().update_entry(data,entryId)
+            return make_response(jsonify(entry),200)
+
+        def delete(self,entryId):
+            """
+            Method: DELETE
+            Deletes an entry by it's Id
+            URL path: mydiary/api/v1/entries/<int:entryId>
+            """
+            entry = Entry().get_by_id(entryId)
+            if entry is None:
+                return make_response(jsonify({'message':"Entry does not exixt"}), 404)
+            else:
+                Entry().delete_entry(entry)
+
+            return make_response(jsonify({'message':'Your entry was successfully deleted'}),200)
+    
