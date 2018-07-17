@@ -10,13 +10,14 @@ class Entries(Resource):
     fetches all items from Entry model
 
     """
-    parser = reqparse.RequestParser()
-    parser.add_argument('title', type=str, required=True,
-                    help='Please provide title for your entry',
-                    location='json')
-    parser.add_argument('content', type=str, required=True,
-                    help="Please provide content for your entry",
-                    location='json')
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('title', type=str, required=True,
+                        help='Please provide title for your entry',
+                        location='json')
+        self.parser.add_argument('content', type=str, required=True,
+                        help="Please provide content for your entry",
+                        location='json')
 
     def get(self):
         """
@@ -27,7 +28,7 @@ class Entries(Resource):
         entries = Entry().all_items()
         response = {'All Entries':entries}
         return response
-        
+
     def post(self):
         """
         Method: POST
@@ -35,7 +36,7 @@ class Entries(Resource):
         URL path: mydiary/api/v1/entries/
         """
         entries = Entry()
-        data = self.reqparse.parse_args()
+        data = self.parser.parse_args()
         if len(entries) == 0:
             id_ = 1
         else:
