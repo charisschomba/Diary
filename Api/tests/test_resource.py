@@ -1,5 +1,5 @@
 import unittest,json
-from app import app
+from app import create_app
 from app.Models.entries import Entry
 """
 Tests for Entry and EntryList Resources
@@ -7,6 +7,7 @@ Tests for Entry and EntryList Resources
 
 class TestApp(unittest.TestCase):
     def setUp(self):
+        app = create_app('testing')
         self.tester = app.test_client(self)
         self.payload = {'title':'off day','content':'Going to watch football'}
         self.data = {'content':'Going to watch football'}
@@ -20,7 +21,7 @@ class TestApp(unittest.TestCase):
                         'content':'I love writing flask apps'
         }
         # initializing database with data since its empty
-        self.db = Entry().save(self.entry)
+        Entry().save(self.entry)
 
 
     # Gets all entries
@@ -63,29 +64,6 @@ class TestApp(unittest.TestCase):
         # correct url
         response = self.tester.delete(self.url_route2)
         self.assertEqual(response.status_code, 200)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 if __name__ == "__main__":
     unittest.main()

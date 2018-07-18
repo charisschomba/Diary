@@ -1,5 +1,5 @@
 import unittest
-from app import app
+from . import create_app
 from app.Models.entries import Entry
 
 class TestModels(unittest.TestCase):
@@ -8,6 +8,7 @@ class TestModels(unittest.TestCase):
     to test models of the app.
     """
     def setUp(self):
+        app = create_app('testing')
         self.tester = app.test_client(self)
         self.test_data = {
                     "id":1,
@@ -59,6 +60,7 @@ class TestModels(unittest.TestCase):
       
 class TestsMagicMethods(unittest.TestCase):
     def setUp(self):
+        app = create_app('testing')
         self.tester = app.test_client(self)
         self.test_data = {
                     "id":1,
@@ -77,14 +79,15 @@ class TestsMagicMethods(unittest.TestCase):
         self.db.clear_all()
 
 # Tests whether dunder __str__ method returns an object as a string
-    def test__str__(self):
+    def test__str__returns_str(self):
        self.assertTrue('[]',self.db)
 
 # Tests whether dunder __len__ method returns length of an object
-    def test__len__(self):
+    def test__len__returns_length(self):
         self.assertEquals(2,len(self.db))
 
 #Tests whether dunder __getitem__ method indexes objects
-    def test__getitem__(self):
+    def test__getitem__permits_indexing(self):
         self.assertEquals(2,(self.db[1]["id"]))
         self.assertEquals(1,(self.db[0]["id"]))
+        self.assertNotEqual(2,(self.db[0]["id"]))
