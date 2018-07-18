@@ -7,6 +7,6 @@ install:
   - pip install pytest-cov
   - pip install coveralls
 script:
-  - pytest
+  - python -m pytest --with-coverage --cover-package=app
 after_success:
   - coveralls

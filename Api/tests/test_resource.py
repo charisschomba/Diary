@@ -21,3 +21,6 @@ class TestApp(unittest.TestCase):
         self.assertEquals(response.status_code,201)
         response_message = json.loads(response.data.decode('utf8'))
         self.assertEqual("Going to watch football",response_message['content'])
+        
+if __name__ == "__main__":
+    unittest.main()        
