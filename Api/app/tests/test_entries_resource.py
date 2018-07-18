@@ -1,5 +1,5 @@
 import unittest,json
-from run import app
+from app import app
 """
 testing my api
 """

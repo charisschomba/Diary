@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import Flask,jsonify,make_response
 from flask_restful import Resource,Api,reqparse
-from Models.entries import Entry
+from app.Models.entries import Entry
 
 class Entries(Resource):
     """
