@@ -7,6 +7,6 @@ install:
   - pip install pytest-cov
   - pip install coveralls
 script:
-  - pytest --cov
+  - pytest --cov=Api/
 after_success:
   - coveralls
