@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import Flask,jsonify,make_response
 from flask_restful import Resource,Api,reqparse
-from Models.entries import Entry
+from app.Models.entries import Entry
 
 class Entries(Resource):
     """
@@ -12,12 +12,14 @@ class Entries(Resource):
     """
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('title', type=str, required=True,
-                        help='Please provide title for your entry',
-                        location='json')
-        self.parser.add_argument('content', type=str, required=True,
-                        help="Please provide content for your entry",
-                        location='json')
+        self.parser.add_argument('title',
+                        type=str, required=True,
+                        help='Please provide title for your entry'
+                        )
+        self.parser.add_argument('content',
+                        type=str, required=True,
+                        help="Please provide content for your entry"
+                        )
 
     def get(self):
         """
@@ -90,7 +92,7 @@ class EntryList(Resource):
         """
         entry = Entry().get_by_id(entryId)
         if entry is None:
-            return make_response(jsonify({'message':"Entry does not exixt"}), 404)
+            return make_response(jsonify({'message':"Entry does not exist"}), 404)
         else:
             data = self.parser.parse_args()
             Entry().update_entry(data,entryId)
@@ -104,7 +106,7 @@ class EntryList(Resource):
         """
         entry = Entry().get_by_id(entryId)
         if entry is None:
-            return make_response(jsonify({'message':"Entry does not exixt"}), 404)
+            return make_response(jsonify({'message':"Entry does not exist"}), 404)
         else:
             Entry().delete_entry(entry)
 
