@@ -1,4 +1,0 @@
-[
-  "Api/tests/test_resource.py::TestApp::test_get_items",
-  "Api/tests/test_resource.py::TestApp::test_post_method"
-]
