@@ -5,8 +5,7 @@ from app.Models.entries import Entry
 
 class Entries(Resource):
     """
-    This resource class will have two methods,
-    a post method that creates a new entry and get method that 
+    This resource class will have two methods,a post method that creates a new entry and get method that
     fetches all items from Entry model
 
     """
@@ -20,8 +19,8 @@ class Entries(Resource):
                         type=str, required=True,
                         help="Please provide content for your entry"
                         )
-
-    def get(self):
+    @staticmethod
+    def get():
         """
         Method: GET
         Get all entries
@@ -54,14 +53,14 @@ class Entries(Resource):
                     'content':data['content']
                 }
                 Entry().save(new_entry)
-            except:
+            except RuntimeError:
                 return {'Message':'An error occured while processing your request'}, 500
-        return make_response(jsonify(new_entry), 201)   
+        return make_response(jsonify(new_entry),201)
 
 class EntryList(Resource):
     """
     This resource class will have three methods,
-    a get method that get an entry by id,put method that 
+    a get method that get an entry by id,put method that
     updates an entry by id if it exists and delete method that
     delete an entry by id.
     """
@@ -69,9 +68,9 @@ class EntryList(Resource):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('title', type=str, required=True,
                         help='No task title provided',
-                        location='json')
-        self.parser.add_argument('content', type=str, default="",
-                        location='json') 
+                    )
+        self.parser.add_argument('content', type=str, required=True,
+                    )
 
     def get(self,entryId):
         """
@@ -97,8 +96,8 @@ class EntryList(Resource):
             data = self.parser.parse_args()
             Entry().update_entry(data,entryId)
         return make_response(jsonify(entry),200)
-
-    def delete(self,entryId):
+    @classmethod
+    def delete(cls,entryId):
         """
         Method: DELETE
         Deletes an entry by it's Id

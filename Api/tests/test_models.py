@@ -57,7 +57,7 @@ class TestModels(unittest.TestCase):
     def test_clear_all(self):
         self.db.clear_all()
         self.assertEquals(0,len(self.db))
-      
+# This class contains test for testing magic methods
 class TestsMagicMethods(unittest.TestCase):
     def setUp(self):
         app = create_app('testing')

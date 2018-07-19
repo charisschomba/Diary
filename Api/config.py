@@ -6,7 +6,7 @@ class Config(object):
     """
     DEBUG = True
     JSONIFY_PRETTYPRINT_REGULAR =True
-    SECRET = "python4life"
+    SECRET = os.getenv('SECRET')
 
 
 class DevelopmentConfig(Config):
