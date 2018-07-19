@@ -67,3 +67,4 @@ pytest
 
 # Heroku
 https://diaryapi.herokuapp.com/
+Test with postman
