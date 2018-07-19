@@ -8,13 +8,13 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 
 Endpoints
 
-| Functionality        |    Method     |         Endpoint                             |
-| :------------------- |:------------ :| --------------------------------------------:|
-| Get all entries      | GET           | /mydiary/v1/entries                          |
-| Get specific entry   | GET           | /mydiary/v1/entries/<entryId>                |
-| Add an entry         | POST          | /mydiary/v1/entries                          |
-| Modify an entry      | PUT           | /mydiary/v1/entries/<entryId>                |
-| Delete an entry      | DELET         | /mydiary/v1/entries/<entryId>                |
+| Functionality        |    Method     |         Endpoint               |
+| :------------------- |:-------------:| ------------------------------:|
+| Get all entries      | GET           | /mydiary/v1/entries            |
+| Get specific entry   | GET           | /mydiary/v1/entries/id         |
+| Add an entry         | POST          | /mydiary/v1/entries            |
+| Modify an entry      | PUT           | /mydiary/v1/entries/id         |
+| Delete an entry      | DELET         | /mydiary/v1/entries/id         |
 
 Requirements
 
