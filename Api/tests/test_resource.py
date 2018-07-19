@@ -4,7 +4,6 @@ from app.Models.entries import Entry
 """
 Tests for Entry and EntryList Resources
 """
-
 class TestApp(unittest.TestCase):
     def setUp(self):
         app = create_app('testing')
@@ -22,7 +21,6 @@ class TestApp(unittest.TestCase):
         }
         # initializing database with data since its empty
         Entry().save(self.entry)
-
 
     # Gets all entries
     def test_get_all_entries(self):
@@ -64,6 +62,5 @@ class TestApp(unittest.TestCase):
         # correct url
         response = self.tester.delete(self.url_route2)
         self.assertEqual(response.status_code, 200)
-        
 if __name__ == "__main__":
     unittest.main()

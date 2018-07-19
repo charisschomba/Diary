@@ -7,9 +7,10 @@ class Entry():
 # This list stores all entries
     Entries = []
 # This method fetches entry by its id
-    def get_by_id(self,entryId):
-        self.entry = next(filter(lambda x: x['id'] == entryId, self.Entries), None)
-        return self.entry
+    @classmethod
+    def get_by_id(cls,entryId):
+        cls.entry = next(filter(lambda x: x['id'] == entryId, cls.Entries), None)
+        return cls.entry
 # Appends an entry to the list
     def save(self,entry):
         self.Entries.append(entry)
