@@ -1,6 +1,6 @@
 from datetime import datetime
-from flask import Flask,jsonify,make_response
-from flask_restful import Resource,Api,reqparse
+from flask import jsonify,make_response
+from flask_restful import Resource,reqparse
 from app.Models.entries import Entry
 
 class Entries(Resource):

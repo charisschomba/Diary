@@ -17,8 +17,8 @@ class Entry():
     def delete_entry(self,entry):
         self.Entries.remove(entry)
 # updates an entry if it exists with new data
-    def update_entry(self,new_entry,id):
-        self.entry = next(filter(lambda x: x['id'] == id, self.Entries), None)
+    def update_entry(self,new_entry,id_):
+        self.entry = next(filter(lambda x: x['id'] == id_, self.Entries), None)
         self.entry.update(new_entry)
 # fetches all entries
     def all_items(self):
