@@ -7,24 +7,24 @@
 
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
-# Endpoints
+Endpoints
 
 | Functionality        |    Method     |         Endpoint               |
 | :------------------- |:-------------:| ------------------------------:|
 | Get all entries      | GET           | /mydiary/v1/entries            |
-| Get specific entry   | GET           | /mydiary/v1/entries/<entryId>  |
+| Get specific entry   | GET           | /mydiary/v1/entries/id         |
 | Add an entry         | POST          | /mydiary/v1/entries            |
-| Modify an entry      | PUT           | /mydiary/v1/entries/<entryId>  |
-| Delete an entry      | DELET         | /mydiary/v1/entries/<entryId>  |
+| Modify an entry      | PUT           | /mydiary/v1/entries/id         |
+| Delete an entry      | DELET         | /mydiary/v1/entries/id         |
 
-# Requirements
+Requirements
 
 - [Python3](https://www.python.org/) (programming languag)
 - [Flask](http://flask.pocoo.org/) (Python webframework)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)(To isolate Api modules)
 - [Pytest](https://docs.pytest.org/en/latest/) (Tool for testing)
 
-# How to setup it up:
+How to setup it up:
 
 To set it up in your machine:
 
@@ -32,26 +32,26 @@ To set it up in your machine:
 
 2.pip install virtualenv
 
-# Clone this repository:
+Clone this repository:
 
 git clone https://github.com/charisschomba/Diary.git
 
-cd Diary/
+cd Diary/Api/
 
-# Create a virtual environment in the root directory:
+Create a virtual environment in the root directory:
 
 virtualenv [name of virtualenv]
 
-# Activate the virtualenv:
+Activate the virtualenv:
 
 source [name of virtualenv]/bin/activate
 
-# On your terminal run:
+On your terminal run:
 
 pip install -r requirements.txt
 to install the modules
 
-# on your terminal run:
+On your terminal run:
 
   export FLASK_APP="run.py"
   
@@ -59,14 +59,21 @@ to install the modules
   
   export SECRET="any random long string"
 
-# Run the application:
+Run the application:
 
 flask run
 
-# To run tests:
+To run tests:
+
 pytest
 
-# Heroku
+Heroku
+
 https://diaryapi.herokuapp.com/
 
 Test with postman
+
+use the above url with the endpoint provided above
+
+To test with postman
+
