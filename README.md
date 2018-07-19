@@ -54,7 +54,9 @@ to install the modules
 ## on your terminal run:
 
   export FLASK_APP="run.py"
+  
   export FLASK_CONFIG="production"
+  
   export SECRET="any random long string"
 
 ## Run the application:
