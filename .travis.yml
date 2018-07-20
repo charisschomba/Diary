@@ -1,0 +1,12 @@
+language: python
+python:
+  - "3.4"
+cache: pip
+install:
+  - pip install -r requirements.txt
+  - pip install pytest-cov
+  - pip install coveralls
+script:
+  - pytest --cov=Api/
+after_success:
+  - coveralls
