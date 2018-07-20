@@ -1,10 +1,11 @@
 import unittest,json
 from app import create_app
 from app.Models.entries import Entry
-"""
-Tests for Entry and EntryList Resources
-"""
+
 class TestApp(unittest.TestCase):
+    """
+    This class has all test for Resources
+    """
     def setUp(self):
         app = create_app('testing')
         self.tester = app.test_client(self)

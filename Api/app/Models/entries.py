@@ -4,7 +4,6 @@ class Entry():
     and also have methods that will manipulate
     those entries.
     """
-    """This list stores all entries"""
     Entries = []
     """This method fetches entry by its id"""
     @classmethod
