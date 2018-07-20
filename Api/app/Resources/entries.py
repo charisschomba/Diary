@@ -24,7 +24,7 @@ class Entries(Resource):
         """
         Method: GET
         Get all entries
-        URL path: mydiary/api/v1/entries/
+        URL path: mydiary/v1/entries
         """
         entries = Entry().all_items()
         response = {'All Entries':entries}
@@ -34,7 +34,7 @@ class Entries(Resource):
         """
         Method: POST
         Create an Entry
-        URL path: mydiary/api/v1/entries/
+        URL path: mydiary/v1/entries
         """
         entries = Entry()
         data = self.parser.parse_args()
@@ -71,12 +71,12 @@ class EntryList(Resource):
                     )
         self.parser.add_argument('content', type=str, required=True,
                     )
-
-    def get(self,entryId):
+    @classmethod
+    def get(cls,entryId):
         """
         Method: GET
         Fetches a single entry by it's Id
-        URL path: mydiary/api/v1/entries/<int:entryId>
+        URL path: mydiary/v1/entries/<int:entryId>
         """
         entry = Entry().get_by_id(entryId)
         if entry:
@@ -87,7 +87,7 @@ class EntryList(Resource):
         """
         Method: PUT
         Modifies an entry by it's Id
-        URL path: mydiary/api/v1/entries/<int:entryId>
+        URL path: mydiary/v1/entries/<int:entryId>
         """
         entry = Entry().get_by_id(entryId)
         if entry is None:
@@ -101,7 +101,7 @@ class EntryList(Resource):
         """
         Method: DELETE
         Deletes an entry by it's Id
-        URL path: mydiary/api/v1/entries/<int:entryId>
+        URL path: mydiary/v1/entries/<int:entryId>
         """
         entry = Entry().get_by_id(entryId)
         if entry is None:

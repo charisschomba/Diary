@@ -11,8 +11,8 @@ class TestApp(unittest.TestCase):
         self.payload = {'title':'off day','content':'Going to watch football'}
         self.data = {'content':'Going to watch football'}
         self.update_data= {'title':'work day','content':'Going to work'}
-        self.url_route1 = '/mydiary/api/v1/entries'
-        self.url_route2 = '/mydiary/api/v1/entries/1'
+        self.url_route1 = '/mydiary/v1/entries'
+        self.url_route2 = '/mydiary/v1/entries/1'
         self.entry = {
                         "id":1,
                         "date":'12-2-2018',

@@ -11,7 +11,7 @@ def create_app(config_name):
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
     api = Api(app)
-    api.add_resource(Entries, '/mydiary/api/v1/entries')
-    api.add_resource(EntryList, '/mydiary/api/v1/entries/<int:entryId>')
+    api.add_resource(Entries, '/mydiary/v1/entries')
+    api.add_resource(EntryList, '/mydiary/v1/entries/<int:entryId>')
 
     return app

@@ -70,6 +70,9 @@ Heroku
 
 https://diaryapi.herokuapp.com/
 
+Test with postman
+
 use the above url with the endpoint provided above
 
 To test with postman
+
