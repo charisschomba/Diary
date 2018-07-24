@@ -73,4 +73,3 @@ class Test_Entry_resources(BaseClass):
         content_type = 'application/json')
         self.assertEqual(res.status_code, 200)
         self.assertIn("Entry deleted", str(res.data))
-        self.assertIn('Authorization', str(res.headers))
