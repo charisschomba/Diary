@@ -40,7 +40,7 @@ def create_users_table(cursor):
         id SERIAL PRIMARY KEY,
         username VARCHAR(255) NOT NULL UNIQUE,
         email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(225) NOT NULL UNIQUE
+        password VARCHAR(225) NOT NULL
         )
         """
     cursor.execute(query)
