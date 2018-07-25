@@ -7,10 +7,13 @@ class Config(object):
     DEBUG = True
     JSONIFY_PRETTYPRINT_REGULAR =True
     SECRET = os.getenv('SECRET')
+    SECRET_KEY = os.getenv('SECRET_KEY ')
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     host = os.getenv('DB_HOST')
     database_name = os.getenv('DB_NAME')
     user = os.getenv('DB_USERNAME')
     password = os.getenv('DB_PASSWORD')
+
 
 
 class DevelopmentConfig(Config):

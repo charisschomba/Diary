@@ -1,8 +1,19 @@
 from flask import Flask
 from config import app_config
+from flask_restful import Api,Resource
+from flask_jwt_extended import (
+    JWTManager, jwt_required, create_access_token,
+    get_jwt_identity
+)
+from app.auth import SingUp,Login
+
 
 def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(app_config[config_name])
+    api = Api(app)
+    jwt = JWTManager(app)
+    api.add_resource(SingUp,'/mydiary/v1/auth/register')
+    api.add_resource(Login,'/mydiary/v1/auth/login')
 
     return app

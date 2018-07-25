@@ -1,5 +1,5 @@
 import jwt,psycopg2
-from create_database import createdb_con
+from app.create_database import createdb_con
 from werkzeug.security import generate_password_hash,check_password_hash
 
 conn = createdb_con()
@@ -7,20 +7,29 @@ cur = conn.cursor()
 
 class User():
     def save(self,user):
-        cur.execute("insert into users (username,email,password) values(%s,%s,%s)",user)
-        conn.commit()
-        conn.close()
+        with cur as c:
+            c.execute("insert into users (username,email,password) values(%s,%s,%s)",user)
+            conn.commit()
 
     @classmethod
     def get_user_by_email(cls,email):
-        cur.execute("select * from users where email = %s",(email,))
-        fetch_data = cur.fetchone()
-        return list([fetch_data])
+        try:
+            cur.execute("select * from users where email = %s",(email,))
+            fetch_data = cur.fetchone()
+            return list([fetch_data])
+        except Exception as e:
+            return e
 
     def get_pwd_by_email(self,email):
         cur.execute("select password from users where email = %s",(email,))
         fetch_data = cur.fetchone()
         return list(fetch_data)
+
+
+    def get_id_by_email(self,email):
+        cur.execute("select users.id from users where email = %s",(email,))
+        user_id = cur.fetchone()
+        return user_id
 
 class Entry():
     """
