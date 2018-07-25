@@ -29,4 +29,17 @@ class Entries(Resource):
         except:
             return{'Server Response':"An error occured try again"},500
 
+    @staticmethod
+    @jwt_required
+    def get():
+        """
+        Method: GET
+        Get all entries of a user
+        URL path: mydiary/v1/entries
+        """
+        user_id =get_jwt_identity()[0]
+        entries = Entry().get_all_entries( user_id )
+        response = {'All Entries':entries}
+        return response, 200
+
 
