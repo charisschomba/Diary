@@ -55,7 +55,7 @@ class Entry():
         """
         cur.execute("insert into entries (user_id,date,title,content) values(%s,%s,%s,%s)",entry)
         conn.commit()
-        conn.close()
+
 
 
     def delete_entry(self,entryId):
