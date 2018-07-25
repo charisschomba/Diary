@@ -42,4 +42,33 @@ class Entries(Resource):
         response = {'All Entries':entries}
         return response, 200
 
+class EntryList(Resource):
+    """
+    This resource class will have three methods,
+    a get method that get an entry by id,put method that
+    updates an entry by id if it exists and delete method that
+    delete an entry by id.
+    """
+
+    def __init__(self):
+            self.parser = reqparse.RequestParser()
+            self.parser.add_argument('title',
+                            type=str,
+                            required=True,
+                            help='No enty title provided',
+                            )
+            self.parser.add_argument('content',
+                            type=str,
+                            required=True,
+                            help='No entry content provided'
+                            )
+
+    @staticmethod
+    @jwt_required
+    def get(entryId):
+        user_id =get_jwt_identity()[0]
+        entry = Entry().get_by_id(entryId,user_id)
+        if entry:
+            return {"Entry fetched Successuflly":entry[0]},200
+        return {'Message':"Entry requested does not exist"}, 404
 
