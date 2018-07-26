@@ -55,7 +55,16 @@ class Entry():
         """
         cur.execute("insert into entries (user_id,date,title,content) values(%s,%s,%s,%s)",entry)
         conn.commit()
-
+    @staticmethod
+    def get_entry_by_id(entryId):
+        """
+        This method fetches user entry id
+        """
+        query="select entries.id from entries WHERE entries.id={}".format(entryId)
+        cur.execute(query)
+        entry_id = cur.fetchone()
+        return entry_id
+        conn.close()
 
 
     def delete_entry(self,entryId):

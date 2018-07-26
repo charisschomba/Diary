@@ -72,3 +72,17 @@ class EntryList(Resource):
             return {"Entry fetched Successuflly":entry[0]},200
         return {'Message':"Entry requested does not exist"}, 404
 
+    @staticmethod
+    def delete(entryId):
+        """
+        Method: DELETE
+        Deletes an entry by it's Id
+        URL path: mydiary/v1/entries/<int:entryId>
+        """
+        entry_id = Entry().get_entry_by_id(entryId)
+        if entry_id is None:
+            return {'message':"Entry does not exist"}, 404
+        else:
+            Entry().delete_entry(entryId)
+
+        return {'message':'Your entry was successfully deleted'}, 200
