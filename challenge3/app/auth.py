@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import timedelta
 from flask import Flask,jsonify,make_response
 from flask_restful import Resource,reqparse
 from app.models import User
@@ -65,6 +66,7 @@ class Login(Resource):
 
         if password == User().get_pwd_by_email(email)[0]:
             user_id = User().get_id_by_email(email)
-            access_token = create_access_token(identity=user_id)
+            exp = timedelta(minutes=60)
+            access_token = create_access_token(identity=user_id,expires_delta=False)
             return {"Welcome":{"Your access token is:":access_token}},200
         return {"Server Response":"Incorrect password"},400

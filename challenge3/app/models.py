@@ -5,6 +5,17 @@ from werkzeug.security import generate_password_hash,check_password_hash
 conn = createdb_con()
 cur = conn.cursor()
 
+class BaseClass():
+    def clear_table(self):
+        query = "TRUNCATE entries,users"
+        cur.execute(query)
+        conn.commit()
+
+    def drop_tables(self):
+        query = "DROP TABLE entries,users"
+        cur.execute(query)
+        conn.commit()
+
 class User():
     def save(self,user):
         with cur as c:
@@ -31,6 +42,7 @@ class User():
         user_id = cur.fetchone()
         return user_id
 
+
 class Entry():
     """
     This class will store diary entries
@@ -56,7 +68,7 @@ class Entry():
         cur.execute("insert into entries (user_id,date,title,content) values(%s,%s,%s,%s)",entry)
         conn.commit()
     @staticmethod
-    def get_entry_by_id(entryId):
+    def get_entry_id(entryId):
         """
         This method fetches user entry id
         """
@@ -82,7 +94,6 @@ class Entry():
         query = "UPDATE entries SET title = '{}',content= '{}'  WHERE entries.id = {}".format(new_entry[0],new_entry[1],entryId)
         cur.execute(query)
         conn.commit()
-        conn.close()
 
     @staticmethod
     def get_all_entries(user_id):
@@ -94,5 +105,13 @@ class Entry():
         user_entries = cur.fetchall()
         return user_entries
         conn.close()
+
+    @staticmethod
+    def entry_date(entryId):
+        query="select date from entries WHERE id={} ".format(entryId)
+        cur.execute(query)
+        date = cur.fetchone()
+        return date
+
 
 
