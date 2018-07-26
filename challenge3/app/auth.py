@@ -1,8 +1,9 @@
 from datetime import datetime
-from flask import Flask,jsonify,make_response
+from datetime import timedelta
+from flask import Flask
 from flask_restful import Resource,reqparse
-from app.models import User
 from flask_jwt_extended import (create_access_token, get_jwt_identity)
+from app.models import User
 
 class SingUp(Resource):
     """
@@ -60,11 +61,13 @@ class Login(Resource):
         data = self.parser.parse_args()
         email = data['email']
         password = data['password']
-        if not email in str(User().get_user_by_email(email)):
+        db_email = User().match_email(email)
+        if not db_email:
             return{"Server Response":"User does not exist"},400
-
-        if password == User().get_pwd_by_email(email)[0]:
+        if password == User().get_pwd_by_email(email):
             user_id = User().get_id_by_email(email)
-            access_token = create_access_token(identity=user_id)
+            exp = timedelta(minutes=1440)
+            access_token = create_access_token(identity=user_id,expires_delta=exp)
             return {"Welcome":{"Your access token is:":access_token}},200
         return {"Server Response":"Incorrect password"},400
+

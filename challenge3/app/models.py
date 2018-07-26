@@ -5,25 +5,67 @@ from werkzeug.security import generate_password_hash,check_password_hash
 conn = createdb_con()
 cur = conn.cursor()
 
+class BaseClass():
+    """This class has methods for dropping tables
+    and deleting table data
+    """
+    def clear_table(self):
+        query = "TRUNCATE entries,users"
+        cur.execute(query)
+        conn.commit()
+
+    def drop_tables(self):
+        query = "DROP TABLE entries,users"
+        cur.execute(query)
+        conn.commit()
+
 class User():
+    """
+    This model saves new user data into the database and provides
+    methods for fetching user's data.
+    """
     def save(self,user):
-        with cur as c:
-            c.execute("insert into users (username,email,password) values(%s,%s,%s)",user)
-            conn.commit()
+        """ saves user's details to database
+        """
+        cur.execute("insert into users (username,email,password) values(%s,%s,%s)",user)
+        conn.commit()
 
     @classmethod
     def get_user_by_email(cls,email):
+        """
+        fetches user's details using email
+        """
         try:
             cur.execute("select * from users where email = %s",(email,))
             fetch_data = cur.fetchone()
-            return list([fetch_data])
+            return list(fetch_data)
         except Exception as e:
             return e
 
+    @staticmethod
+    def match_email(email):
+        """
+        matches user's email address that is stored
+        to the databse
+        """
+        try:
+            cur.execute("select email from users where email = %s",(email,))
+            fetch_data = cur.fetchone()
+            return list(fetch_data)[0]
+        except Exception as e:
+            return e
+
+
     def get_pwd_by_email(self,email):
-        cur.execute("select password from users where email = %s",(email,))
-        fetch_data = cur.fetchone()
-        return list(fetch_data)
+        """
+        gets user's password using email
+        """
+        try:
+            cur.execute("select password from users where email = %s",(email,))
+            fetch_data = cur.fetchone()
+            return list(fetch_data)[0]
+        except Exception as e:
+            return e
 
 
     def get_id_by_email(self,email):
@@ -55,6 +97,15 @@ class Entry():
         """
         cur.execute("insert into entries (user_id,date,title,content) values(%s,%s,%s,%s)",entry)
         conn.commit()
+    @staticmethod
+    def get_entry_id(entryId):
+        """
+        This method fetches entry id
+        """
+        query="select entries.id from entries WHERE entries.id={}".format(entryId)
+        cur.execute(query)
+        entry_id = cur.fetchone()
+        return entry_id
         conn.close()
 
 
@@ -73,7 +124,6 @@ class Entry():
         query = "UPDATE entries SET title = '{}',content= '{}'  WHERE entries.id = {}".format(new_entry[0],new_entry[1],entryId)
         cur.execute(query)
         conn.commit()
-        conn.close()
 
     @staticmethod
     def get_all_entries(user_id):
@@ -86,4 +136,12 @@ class Entry():
         return user_entries
         conn.close()
 
-
+    @staticmethod
+    def entry_date(entryId):
+        """
+        Returns the date when an entry was created
+        """
+        query="select date from entries WHERE id={} ".format(entryId)
+        cur.execute(query)
+        date = cur.fetchone()
+        return date
