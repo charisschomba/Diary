@@ -35,12 +35,11 @@ class Entries(Resource):
         content = data['content']
         entry = (user_id,date,title,content)
         Entry().save(entry)
-        return {'id':user_id,'date':date,'title':title,'content':content},201
-        # try:
-        #     Entry().save(entry)
-        #     return {'id':user_id,'date':date,'title':title,'content':content},201
-        # except:
-        #     return{'Server Response':"An error occured try again"},500
+        try:
+            Entry().save(entry)
+            return {'id':user_id,'date':date,'title':title,'content':content},201
+        except:
+            return{'Server Response':"An error occured try again"},500
 
     @staticmethod
     @jwt_required
@@ -79,6 +78,8 @@ class EntryList(Resource):
     @staticmethod
     @jwt_required
     def get(entryId):
+        """ Gets an entry using its id
+        """
         user_id =get_jwt_identity()[0]
         entry = Entry().get_by_id(entryId,user_id)
         if entry:
