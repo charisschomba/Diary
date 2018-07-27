@@ -3,7 +3,7 @@ import os, psycopg2
 def createdb_con(config=None):
     #creating database connection with the right database based on configs
     if config=='testing':
-        db_name = os.getenv('testdb')
+        db_name = os.getenv('TEST_DB')
     else:
         database_name = os.getenv('DB_NAME')
 
