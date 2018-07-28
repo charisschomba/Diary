@@ -3,7 +3,7 @@ from app import create_app
 
 class TestAppConfigs(unittest.TestCase):
     """
-    This class tests app configuration settings such as Debug and Secret key
+    This class tests app configuration settings
     """
 
     def test_DefaultConfig(self):
