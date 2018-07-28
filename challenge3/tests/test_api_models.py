@@ -4,7 +4,7 @@ from app.models import ClearClass,Entry,User
 
 class TestUserModel(unittest.TestCase):
 
-    """ This class tests Api model classes"""
+    """ This class tests users model """
 
     def setUp(self):
         app = create_app('testing')
@@ -21,18 +21,8 @@ class TestUserModel(unittest.TestCase):
         verify = User().verify_password('test11e1@camp.com','test111')
         self.assertEqual(verify,True)
 
-    def test_get_user_by_id(self):
-        user = User().get_user_by_email('test11e1@camp.com')
-        self.assertIn('test',user)
-
-    def test_match_email_func(self):
-        email = User().match_email('test11e1@camp.com')
-        self.assertEquals(email,'test11e1@camp.com')
-        ClearClass().drop_tables()
-        ClearClass().create_table()
-
 class TestEntryModel(unittest.TestCase):
-
+    """ This class tests Entry model"""
     def setUp(self):
         app = create_app('testing')
         self.tester = app.test_client(self)
@@ -46,8 +36,6 @@ class TestEntryModel(unittest.TestCase):
             Entry().save(entry)
         data = Entry().verify_title('python',1)
         self.assertEquals(data,True)
-
-
 
     def test_verify_email_fun(self):
         entries = Entry().verify_title('python',1)

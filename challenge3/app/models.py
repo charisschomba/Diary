@@ -186,6 +186,7 @@ class Entry():
         cur.execute(query)
         date = cur.fetchone()
         return date
+
     def verify_title(self,title,user_id):
         query ="select entries.title from entries where user_id = {} and title = '{}' ".format(user_id,title)
         cur.execute(query)
