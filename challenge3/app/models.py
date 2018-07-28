@@ -1,4 +1,3 @@
-import psycopg2
 from app.create_database import createdb_con
 from werkzeug.security import generate_password_hash,check_password_hash
 
@@ -28,7 +27,7 @@ class ClearClass():
             user_id INTEGER NOT NULL,
             date VARCHAR(20),
             title VARCHAR(255) NOT NULL,
-            content VARCHAR(255) NOT NULL,
+            content TEXT NOT NULL,
             PRIMARY KEY (user_id,id),
             FOREIGN KEY (user_id)
             REFERENCES users (id)
