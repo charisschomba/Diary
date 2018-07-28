@@ -19,6 +19,30 @@ class ClearClass():
         query = "DROP TABLE entries,users"
         cur.execute(query)
         conn.commit()
+    def create_table(self):
+        query = """ CREATE TABLE entries (
+            id SERIAL ,
+            user_id INTEGER NOT NULL,
+            date VARCHAR(20),
+            title VARCHAR(255) NOT NULL,
+            content VARCHAR(255) NOT NULL,
+            PRIMARY KEY (user_id,id),
+            FOREIGN KEY (user_id)
+            REFERENCES users (id)
+
+            )
+                """
+        query2 = """
+            CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(225) NOT NULL
+            )
+            """
+        cur.execute(query2)
+        cur.execute(query)
+        conn.commit()
 
 class User():
     """

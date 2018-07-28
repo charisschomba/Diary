@@ -20,7 +20,7 @@ class DevelopmentConfig(Config):
     Development configurations
     """
     DEBUG = True
-    DB_NAME = os.getenv('DB_NAME')
+    database_name = os.getenv('DB_NAME')
 
 class ProductionConfig(Config):
     """
@@ -30,11 +30,11 @@ class ProductionConfig(Config):
 
 class TestingConfig(Config):
     """
-    Production configurations
+    Testing configurations
     """
     DEBUG = True
     TESTING = True
-    DB_NAME = os.getenv('TEST_DB')
+    database_name = os.getenv('TEST_DB')
 
 app_config = {
     'development': DevelopmentConfig,
