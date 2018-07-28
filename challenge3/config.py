@@ -6,7 +6,6 @@ class Config(object):
     """
     DEBUG = True
     JSONIFY_PRETTYPRINT_REGULAR =True
-    SECRET = os.getenv('SECRET')
     SECRET_KEY = os.getenv('SECRET_KEY ')
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
     host = os.getenv('DB_HOST')
@@ -21,7 +20,7 @@ class DevelopmentConfig(Config):
     Development configurations
     """
     DEBUG = True
-    DB_NAME = os.getenv('mydiarydb')
+    database_name = os.getenv('DB_NAME')
 
 class ProductionConfig(Config):
     """
@@ -31,11 +30,11 @@ class ProductionConfig(Config):
 
 class TestingConfig(Config):
     """
-    Production configurations
+    Testing configurations
     """
     DEBUG = True
     TESTING = True
-    DB_NAME = os.getenv('testdb')
+    database_name = os.getenv('TEST_DB')
 
 app_config = {
     'development': DevelopmentConfig,

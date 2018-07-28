@@ -1,4 +1,4 @@
-import jwt,psycopg2
+import psycopg2
 from app.create_database import createdb_con
 from werkzeug.security import generate_password_hash,check_password_hash
 
@@ -10,13 +10,40 @@ class ClearClass():
     """This class has methods for dropping tables
     and deleting table data
     """
-    def clear_table(self):
+    @staticmethod
+    def clear_table():
         query = "TRUNCATE entries,users"
         cur.execute(query)
         conn.commit()
 
-    def drop_tables(self):
+    @staticmethod
+    def drop_tables():
         query = "DROP TABLE entries,users"
+        cur.execute(query)
+        conn.commit()
+    @staticmethod
+    def create_table():
+        query = """ CREATE TABLE entries (
+            id SERIAL ,
+            user_id INTEGER NOT NULL,
+            date VARCHAR(20),
+            title VARCHAR(255) NOT NULL,
+            content VARCHAR(255) NOT NULL,
+            PRIMARY KEY (user_id,id),
+            FOREIGN KEY (user_id)
+            REFERENCES users (id)
+
+            )
+                """
+        query2 = """
+            CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password VARCHAR(225) NOT NULL
+            )
+            """
+        cur.execute(query2)
         cur.execute(query)
         conn.commit()
 
@@ -25,14 +52,15 @@ class User():
     This model saves new user data into the database and provides
     methods for fetching user's data.
     """
-    def save(self,user):
+    @staticmethod
+    # saves user's details to database
+    def save(user):
         hash_pwd = generate_password_hash(user[2])
-        """ saves user's details to database
-        """
         cur.execute("insert into users (username,email,password) values(%s,%s,%s)",(user[0],user[1],hash_pwd))
         conn.commit()
 
-    def verify_password(self,email,password):
+    @staticmethod
+    def verify_password(email,password):
         cur.execute("select password from users where email = %s",(email,))
         fetch_data = cur.fetchone()
         hashed_pwd = (fetch_data)[0]
@@ -69,8 +97,8 @@ class User():
         except Exception as e:
             return e
 
-
-    def get_pwd_by_email(self,email):
+    @staticmethod
+    def get_pwd_by_email(email):
         """
         gets user's password using email
         """
@@ -81,8 +109,8 @@ class User():
         except Exception as e:
             return e
 
-
-    def get_id_by_email(self,email):
+    @staticmethod
+    def get_id_by_email(email):
         cur.execute("select users.id from users where email = %s",(email,))
         user_id = cur.fetchone()
         return user_id
@@ -103,9 +131,9 @@ class Entry():
         cur.execute(query)
         user_entries = cur.fetchall()
         return user_entries
-        conn.close()
 
-    def save(self,entry):
+    @staticmethod
+    def save(entry):
         """
         saves an entry to the database
         """
@@ -115,6 +143,7 @@ class Entry():
         cur.execute(query)
         entry = cur.fetchone()
         return {'id':entry[0],"date":entry[1],"title":entry[2],"content":entry[3]}
+
     @staticmethod
     def get_entry_id(entryId):
         """
@@ -126,7 +155,8 @@ class Entry():
         return entry_id
         conn.close()
 
-    def delete_entry(self,entryId):
+    @staticmethod
+    def delete_entry(entryId):
         """
         deletes an entry
         """
@@ -134,7 +164,8 @@ class Entry():
         cur.execute(query)
         conn.commit()
 
-    def update_entry(self,new_entry,entryId):
+    @staticmethod
+    def update_entry(new_entry,entryId):
         """
         updates a user an entry if it exists with new data
         """
@@ -162,7 +193,9 @@ class Entry():
         cur.execute(query)
         date = cur.fetchone()
         return date
-    def verify_title(self,title,user_id):
+
+    @staticmethod
+    def verify_title(title,user_id):
         query ="select entries.title from entries where user_id = {} and title = '{}' ".format(user_id,title)
         cur.execute(query)
         title = cur.fetchone()
