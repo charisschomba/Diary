@@ -6,6 +6,10 @@
 
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
+Documentation https://app.apiary.io/mydiaryrestapi/editor
+
+Heroku Link https://mydiary-v2.herokuapp.com/
+
 Endpoints
 
 | Functionality        |    Method     |         Endpoint               |
@@ -15,6 +19,9 @@ Endpoints
 | Add an entry         | POST          | /mydiary/v1/entries            |
 | Modify an entry      | PUT           | /mydiary/v1/entries/id         |
 | Delete an entry      | DELET         | /mydiary/v1/entries/id         |
+| Register             | POST          | /mydiary/v1/auth/register      |
+| Login                | POST          | /mydiary/v1/auth/login         |
+
 
 Requirements
 
@@ -56,7 +63,7 @@ On your terminal run:
   
   export FLASK_CONFIG="production"
   
-  export SECRET="any random long string"
+  export SECRET_KEY="any random long string"
 
 Run the application:
 
@@ -66,13 +73,5 @@ To run tests:
 
 pytest
 
-Heroku
 
-https://diaryapi.herokuapp.com/
-
-Test with postman
-
-use the above url with the endpoint provided above
-
-To test with postman
 
