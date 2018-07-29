@@ -6,7 +6,7 @@
 
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
-Documentation https://app.apiary.io/mydiaryrestapi/editor
+Documentation https://mydiaryrestapi.docs.apiary.io/
 
 Heroku Link https://mydiary-v2.herokuapp.com/
 
@@ -42,7 +42,7 @@ Clone this repository:
 
 git clone https://github.com/charisschomba/Diary.git
 
-cd Diary/Api/
+cd Diary/challenge3/
 
 Create a virtual environment in the root directory:
 
