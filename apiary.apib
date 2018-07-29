@@ -1,0 +1,250 @@
+FORMAT: 1A
+HOST: https://mydiary-v2.herokuapp.com/
+
+# My-Diary-API
+MyDiary is an online journal where users can pen down their thoughts and feelings. 
+
+This API requires token-based authentication to access resources.
+
+The features attached to the service include:
+* user registration
+* authenticating a user
+* creating a new Entry to their diary
+* updating and deleting an existing entry
+* retrieving a list of all created entries by a registered user.
+* retrieving a single entry by a registered user.
+
+
+
+## Group user registration
+
+## Registration [/mydiary/v1/auth/register]
+
+### Register a new user [POST]
+
+You require a username, email, password for registration.
+Create a new account  by making a `POST` request to the `/mydiary/v1/auth/register` path
+
++ Request (application/json)
+
+        {
+            "username": "Chariss Chomba",
+            "email": "chariss@gmail.com",
+            "password": "!(@)^#de^@)@_@",
+            "confirm_password": "!(@)^#de^@)@_@",
+        }
+
++ Response 201 (application/json)
+
+        {
+            "Server Response": " Hello Chariss Chomba, Your Account Was Created Successfully"
+        }
+        
+        
+## Group User Authentication
+
+## Login [/mydiary/v1/auth/login]
+
+### Authenticate a user and generate a token [POST]
+
+Use your correct email and password.
+Note the token returned on successful login. It is required to access
+resources.
+Login to your acount by making a `POST` request to the `/mydiary/v1/auth/login` path
+
++ Request (application/json)
+
+        {
+            "email": "chariss@gmail.com",
+            "password": "!(@)^#de^@)@_@"
+        }
+
++ Response 200 (application/json)
+
+        {
+            "Welcome to your personal diary, your access token is": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MzI4NjQ2MjIsImV4cCI6MTUzMjk1MTAyMiwianRpIjoiZjMzMWM2NDUtNmZlOC00YThiLWEyN2QtZjc3YmQ4OGU5ODRkIiwidHlwZSI6ImFjY2VzcyIsIm5iZiI6MTUzMjg2NDYyMiwiZnJlc2giOmZhbHNlLCJpZGVudGl0eSI6WzFdfQ.cxllaLSzXPMw9MTQjMHmhoviMDKXHJuSnfMIQ3CSnkQ"
+        }
+
+
+## Entry Resources [/mydiary/v1/entries/]
+
+### Create a new new entry [POST]
+
+Create a new entry by making a `POST` request to the `/mydiary/v1/entries` path
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: "Bearer <JWT token>"
+
+    + Body
+
+            {
+                "title": "Learn to code",
+                "content": "Python for everyone"
+            }
+
++ Response 201 (application/json)
+
+        {
+            "This entry was added to your diary": {
+            "id": 1,
+            "content": "Python for everyone",
+            "title": "Learn to code",
+            "date": "29-07-2018"
+            }
+        }
+
++ Response 500 (application/json)
+
+        {
+            "Server": "Internal server error"
+        }
+
++ Response 409 (application/json)
+
+        {
+            "Server Response": "Title already exist, use a different one."
+        }
+
+### Retrieve all entries [GET]
+
+Retrieve all Entries that are owned by the current user
+Retrieve all entries by making a `GET` request to the `/mydiary/v1/entries` path.
+
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: "Bearer <JWT token>"
+
++ Response 200 (application/json)
+
+        {
+            "You currently have 1 diary entries.": [
+                [
+                1,
+                "29-07-2018",
+                "Learn to code",
+                "Python for everyone"
+                ]
+            ]
+        }
+
++ Response 401 (application/json)
+
+        {
+            "message": "Please provide a valid auth token!"
+        }
+
++ Response 500 (application/json)
+
+        {
+            "message": "Internal Server Error"
+        }
+
+## EntryList Resource [/mydiary/v1/entries/<int:entryId>/]
+
+### Get a single entry [GET]
+
+Retrieve a single Entry
+Retrieve a single entry by making a `GET` request to the `/mydiary/v1/entries/entryId` path.
+
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: "Bearer <JWT token>"
+
++ Response 200 (application/json)
+
+        {
+            "Entry fetched Successuflly": [
+                2,
+                "29-07-2018",
+                "Learn to code",
+                "Python for everyone"
+                ]
+        }
+
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+
++ Response 404 (application/json)
+
+        {
+            "message": "Entry requested does not exist."
+        }
+
+### Update an entry [PUT]
+
+Update a single entry
+Update a single entry by making a `PUT` request to the `/mydiary/v1/entries/entryId` path.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: "Bearer <JWT token>"
+
+    + Body
+
+            {
+                "title": "going to work",
+                "content": "today i will be working"
+            }
+
++ Response 200 (application/json)
+
+        {
+            "Server Response": "Entry Updated successfully"
+        }
+
++ Response 404 (application/json)
+
+        {
+            "message": "Entry does not exist"
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "message": "Entry cannot be updated because it was not created today"
+        }        
+        
+
+
+### Delete an entry [DELETE]
+
+Delete a single entry
+Delete a single entry by making a `POST` request to the `/mydiary/v1/entries/entryId` path.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: "Bearer <JWT token>"
+
++ Response 200 (application/json)
+
+        {
+            "message": "Your entry was successfully deleted"
+        }
+
++ Response 500 (application/json)
+
+        {
+            "message": "Internal server error"
+        }
+
++ Response 404 (application/json)
+
+        {
+            "message": "Entry does not exist"
+        }
