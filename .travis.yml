@@ -5,8 +5,10 @@ cache: pip
 service:
   -postgresql
 install:
-  - psql -c 'create database diarydb;' -U postgres
+  - pip install -r requirements.txt
+  - pip install pytest-cov
+  - pip install coveralls
 script:
-  - pytest
+  pytest --ignore=Api
 after_success:
   - coveralls
