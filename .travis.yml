@@ -6,7 +6,6 @@ service:
   -postgresql
 install:
   - psql -c 'create database diarydb;' -U postgres
-  - psql -c 'create user chariss with password "pooler32" createdb;' -U postgres
   - pip install -r requirements.txt
 before_script:
   - python app/create_database.py
