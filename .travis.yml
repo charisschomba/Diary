@@ -7,8 +7,6 @@ service:
 install:
   - psql -c 'create database diarydb;' -U postgres
   - pip install -r requirements.txt
-before_script:
-  - python app/create_database.py
 script:
   - pytest --ignore=Api --cov=challenge3
 after_success:
