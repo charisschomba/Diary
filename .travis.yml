@@ -7,6 +7,6 @@ service:
 install:
   - psql -c 'create database diarydb;' -U postgres
 script:
-  - pytest --ignore=Api 
+  - pytest
 after_success:
   - coveralls
