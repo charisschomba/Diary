@@ -2,8 +2,6 @@ language: python
 python:
   - "3.6"
 cache: pip
-service:
-  -postgresql
 install:
   - pip install -r requirements.txt
   - pip install pytest-cov
