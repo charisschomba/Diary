@@ -1,5 +1,5 @@
 import unittest
-from app import create_app
+from challenge3.app import create_app
 
 class TestAppConfigs(unittest.TestCase):
     """
@@ -26,4 +26,3 @@ class TestAppConfigs(unittest.TestCase):
         app = create_app("development")
         self.tester = app.test_client(self)
         self.assertEqual(True,app.config['DEBUG'])
-

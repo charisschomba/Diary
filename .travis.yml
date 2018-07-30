@@ -12,6 +12,6 @@ before_script:
   - python app/create_database.py
 
   script:
-  - pytest --cov=test/
+  - pytest ./challenge3 --cov
 after_success:
   - coveralls
