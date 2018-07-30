@@ -1,5 +1,5 @@
 import unittest
-from challenge3.app import create_app
+from app import create_app
 
 class TestAppConfigs(unittest.TestCase):
     """

@@ -20,7 +20,7 @@ class Entry():
         self.Entries.remove(entry)
 
     def update_entry(self,new_entry,id_):
-        """updates a comment if it exists with new data"""
+        """updates an entry if it exists with new data"""
         self.entry = next(filter(lambda x: x['id'] == id_, self.Entries), None)
         self.entry.update(new_entry)
 

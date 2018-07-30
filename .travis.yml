@@ -12,6 +12,6 @@ before_script:
   - python app/create_database.py
 
   script:
-  - pytest ./challenge3 --cov
+  - pytest --ignore=Api --cov=challenge3
 after_success:
   - coveralls
