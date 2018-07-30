@@ -17,6 +17,7 @@ before_script:
   - export DB_PASSWORD="pooler32"
   - export JWT_SECRET_KEY="(#_jjdril^&@e"
   - psql -c 'create database diarydb;' -U postgres
+  - psql -c "create user chariss with password 'pooler32' createdb;" -U postgres
 script:
   pytest --ignore=Api
 after_success:
