@@ -34,8 +34,8 @@ class Test_Auth_Endpoints(unittest.TestCase):
             'email':'chariss@camp.com',
             'password':'test',
             }
-    def tearDown(self):
-        ClearClass().clear_table()
+    # def tearDown(self):
+    #     ClearClass().clear_table()
 
 # Test sing_up endpoint
     def test_singup_endpoint(self):
