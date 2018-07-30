@@ -68,7 +68,7 @@ class Test_Auth_Endpoints(unittest.TestCase):
         self.assertIn("token",str(res))
 
 #password don't match
-    def test_sing_with_incorrect_password(self):
+    def test_singin_with_incorrect_password(self):
         self.tester.post(self.singup_url,data=json.dumps(self.new_user),
         content_type="application/json")
         response = self.tester.post(self.singin_url,data=json.dumps(self.user2),
