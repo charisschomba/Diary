@@ -18,7 +18,7 @@ before_script:
   - export JWT_SECRET_KEY="(#_jjdril^&@e"
   - psql -c 'create database diarydb;' -U postgres
   - psql -c "create user chariss with password 'pooler32' createdb;" -U postgres
-  - python app/create_database.py
+  - python challenge3/app/create_database.py
 script:
   pytest --ignore=Api
 after_success:
