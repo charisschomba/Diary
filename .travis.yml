@@ -20,7 +20,7 @@ before_script:
   - psql -c "create user chariss with password 'pooler32' createdb;" -U postgres
   - python challenge3/app/create_database.py
 script:
-  pytest --ignore=Api
+  pytest --ignore=Api --cov=challenge3/
 after_success:
   - coveralls
   - codeclimate
