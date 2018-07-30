@@ -9,6 +9,7 @@ install:
   - psql -c 'create user chariss with password "pooler32" createdb;' -U postgres
   - pip install -r requirements.txt
 before_script:
+  - cd challenge3
   - python app/create_database.py
 
   script:
