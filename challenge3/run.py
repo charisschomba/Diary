@@ -1,3 +1,4 @@
+""" This is the scripts tha runs the app """
 import os
 from app import create_app
 
