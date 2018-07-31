@@ -83,9 +83,7 @@ class Test_Auth_Endpoints(unittest.TestCase):
         response = self.tester.post(self.singin_url, data=json.dumps(self.user2),
                                     content_type="application/json"
                                     )
-        res = json.loads(response.data.decode('utf8'))
-        self.assertIn("{'Server Response': 'Your password was Incorrect, \
-                         please double check it.'}",str(res))
+        self.assertEquals(response.status_code, 400)
 
     def test_singin_with_unexisting_email(self):
         """ sign in with  unregisted email """
