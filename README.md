@@ -54,7 +54,7 @@ source [name of virtualenv]/bin/activate
 
 On your terminal run:
 
-`pip install -r requirements.txt`
+pip install -r requirements.txt
 to install the modules
 
 switch to postgres user with;
@@ -67,9 +67,15 @@ create database
 
 create user
 
-`psql -c "CREATE USER db_user WITH PASSWORD password createdb" -U postgres`
+`psql -c "CREATE USER db_user WITH PASSWORD 'password' createdb" -U postgres`
 
+Cd to challenge3/app
 
+run
+
+python create_database.py
+
+to create the two tables required
 
 On your terminal run:
 
@@ -87,14 +93,9 @@ On your terminal run:
 
   `export DB_PASSWORD="password"`
 
-  `export SECRET_KEY="any random long string"`
+  `export SECRET_KEY="any randomlongstring"`
 
-`cd  challenge3/app`
-
-run
-`python create_database.py`
-
-to create the two tables required
+cd  challenge3/
 
 Run the application:
 
@@ -102,6 +103,23 @@ Run the application:
 
 use the above specified endpoints in the table for testing.
 
+Run the application:
+
+cd to Diary/challenge3 folder
+
+flask run
+
+
+use the above specified endpoints in the table for testing.
+
 To run tests:
 
-`pytest`
+pytest
+
+run
+
+pylint
+
+for code rating.
+
+
