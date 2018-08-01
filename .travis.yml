@@ -7,8 +7,8 @@ install:
   - pip install pytest-cov
   - pip install coveralls
 before_script:
-  - psql -c 'create database diarydb;' -U postgres
-  - psql -c "create user chariss with password 'pooler32' createdb;" -U postgres
+  - psql -c 'create database database_name;' -U postgres
+  - psql -c "create user db_user with password 'password' createdb;" -U postgres
   - python challenge3/app/create_database.py
 script:
   pytest --ignore=Api --cov=challenge3/
