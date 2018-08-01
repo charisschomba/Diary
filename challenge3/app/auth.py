@@ -40,8 +40,7 @@ class SingUp(Resource):
         else:
             new_user = (username, email, password)
             User().save(new_user)
-            return{"Server Response":" Hello {}, your account was \
-             created successfully".format(username).title()}, 201
+            return{"Server Response":" Hello {}, your account was created".format(username).title()}, 201
 
 class Login(Resource):
     """
