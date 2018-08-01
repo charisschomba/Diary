@@ -2,6 +2,8 @@ aniso8601==3.0.2
 asn1crypto==0.24.0
 astroid==2.0.1
 cffi==1.11.5
+pytest-cov
+coveralls
 click==6.7
 cryptography==2.3
 Flask==1.0.2
@@ -26,4 +28,3 @@ Werkzeug==0.14.1
 wrapt==1.10.11
 flask-cors
 autoenv==1.0.0
-
