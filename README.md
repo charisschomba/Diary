@@ -25,7 +25,7 @@ Endpoints
 
 Requirements
 
-- [Python3](https://www.python.org/) (programming languag)
+- [Python3](https://www.python.org/) (programming language)
 - [Flask](http://flask.pocoo.org/) (Python webframework)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)(To isolate Api modules)
 - [Pytest](https://docs.pytest.org/en/latest/) (Tool for testing)
@@ -54,31 +54,54 @@ source [name of virtualenv]/bin/activate
 
 On your terminal run:
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 to install the modules
+
+switch to postgres user with;
+
+`sudo -i -u postgres` or `su postgres`
+
+create database
+
+`createdb database_name`
+
+create user
+
+`psql -c "CREATE USER db_user WITH PASSWORD password createdb" -U postgres`
+
+
 
 On your terminal run:
 
-  export FLASK_APP="run.py"
-  
-  export FLASK_CONFIG="production"
-  
-  export JWT_SECRET_KEY="any random long string"
-  
-  export DB_HOST="localhost"
-  
-  export DB_NAME="database name"
-  
-  export DB_USERNAME="db user"
-  
-  export DB_PASSWORD="password"
-  
-  export SECRET_KEY="any random long string"
+  `export FLASK_APP="run.py"`
+
+  `export FLASK_ENV="development"`
+
+  `export JWT_SECRET_KEY="anyrandomlongstring"`
+
+  `export DB_HOST="localhost"`
+
+  `export DB_NAME="database_name"`
+
+  `export DB_USERNAME="db_user"`
+
+  `export DB_PASSWORD="password"`
+
+  `export SECRET_KEY="any random long string"`
+
+`cd  challenge3/app`
+
+run
+`python create_database.py`
+
+to create the two tables required
 
 Run the application:
 
-flask run
+`flask run`
+
+use the above specified endpoints in the table for testing.
 
 To run tests:
 
-pytest
+`pytest`
