@@ -57,28 +57,39 @@ On your terminal run:
 pip install -r requirements.txt
 to install the modules
 
+Cd to challenge3/app
+
+run python create_database.py
+
+to create the two tables required
+
+
 On your terminal run:
 
   export FLASK_APP="run.py"
-  
-  export FLASK_CONFIG="production"
-  
+
+  export FLASK_ENV="development"
+
   export JWT_SECRET_KEY="any random long string"
-  
+
   export DB_HOST="localhost"
-  
+
   export DB_NAME="database name"
-  
+
   export DB_USERNAME="db user"
-  
+
   export DB_PASSWORD="password"
-  
+
   export SECRET_KEY="any random long string"
 
 Run the application:
 
+cd to Diary/challenge3 folder
+
 flask run
+
+use the above specified endpoints in the table for testing.
 
 To run tests:
 
-pytest
+pytest --ignore=Api
