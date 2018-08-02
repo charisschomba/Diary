@@ -58,8 +58,16 @@ class Entries(Resource):
             return {"Server Response":"Your diary is empty"}, 200
         else:
             total_entries = str(len(entries))
-            msg = "You currently have "+total_entries+" diary entries."
-            response = {msg:entries}
+            all_user_entries = []
+            single_entry = {}
+            for user_entries in entries:
+                single_entry["id"] = user_entries[0]
+                single_entry["date"] = user_entries[1]
+                single_entry["title"] = user_entries[2]
+                single_entry["content"] = user_entries[3]
+                all_user_entries.append(single_entry)
+                msg = "You currently have "+total_entries+" diary entries."
+                response = {msg:all_user_entries}
             return response, 200
 
 class EntryList(Resource):
