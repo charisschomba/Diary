@@ -1,4 +1,6 @@
 # Online Diary V-2
+
+[![Build Status](https://travis-ci.org/charisschomba/Diary.svg?branch=Refactor-Tests)](https://travis-ci.org/charisschomba/Diary)
 [![Coverage Status](https://coveralls.io/repos/github/charisschomba/Diary/badge.svg?branch=Refactor-Tests)](https://coveralls.io/github/charisschomba/Diary?branch=Refactor-Tests)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b7ac2f6873e46be8bfc34ec0efbfd7f)](https://www.codacy.com/app/charisschomba/Diary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=charisschomba/Diary&amp;utm_campaign=Badge_Grade)
 
@@ -23,7 +25,7 @@ Endpoints
 
 Requirements
 
-- [Python3](https://www.python.org/) (programming language)
+- [Python3](https://www.python.org/) (programming languag)
 - [Flask](http://flask.pocoo.org/) (Python webframework)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)(To isolate Api modules)
 - [Pytest](https://docs.pytest.org/en/latest/) (Tool for testing)
@@ -55,69 +57,21 @@ On your terminal run:
 pip install -r requirements.txt
 to install the modules
 
-switch to postgres user with;
-
-`sudo -i -u postgres` or `su postgres`
-
-create database
-
-`createdb database_name`
-
-create user
-
-`psql -c "CREATE USER db_user WITH PASSWORD 'password' createdb" -U postgres`
-
-Cd to challenge3/app
-
-run
-
-python create_database.py
-
-to create the two tables required
-
 On your terminal run:
 
-  `export FLASK_APP="run.py"`
-
-  `export FLASK_ENV="development"`
-
-  `export JWT_SECRET_KEY="anyrandomlongstring"`
-
-  `export DB_HOST="localhost"`
-
-  `export DB_NAME="database_name"`
-
-  `export DB_USERNAME="db_user"`
-
-  `export DB_PASSWORD="password"`
-
-  `export SECRET_KEY="any randomlongstring"`
-
-cd  challenge3/
+  export FLASK_APP="run.py"
+  export FLASK_CONFIG="production"
+  export JWT_SECRET_KEY="any random long string"
+  export DB_HOST="localhost"
+  export DB_NAME="database name"
+  export DB_USERNAME="db user"
+  export DB_PASSWORD="password"
+  export SECRET_KEY="any random long string"
 
 Run the application:
-
-`flask run`
-
-use the above specified endpoints in the table for testing.
-
-Run the application:
-
-cd to Diary/challenge3 folder
 
 flask run
-
-
-use the above specified endpoints in the table for testing.
 
 To run tests:
 
 pytest
-
-run
-
-pylint
-
-for code rating.
-
-
