@@ -32,6 +32,8 @@ class SingUp(Resource):
         email = data['email']
         password = data['password']
         confirm_password = data['confirm_password']
+        if not len(password) >= 8:
+            return{"Server Response":"Password length should altest 8 characters"}, 401
         if not password == confirm_password:
             return {"message":"Double check your password"}, 400
         user = User().get_user_by_email(email)
