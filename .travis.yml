@@ -9,7 +9,7 @@ before_script:
   - psql -c "create user db_user with password 'password' createdb;" -U postgres
   - python app/create_database.py
 script:
-  pytest --cov=app/
+  pytest --cov
 after_success:
   - coveralls
   - codeclimate
