@@ -9,9 +9,9 @@ install:
 before_script:
   - psql -c 'create database database_name;' -U postgres
   - psql -c "create user db_user with password 'password' createdb;" -U postgres
-  - python challenge3/app/create_database.py
+  - python app/create_database.py
 script:
-  pytest --ignore=Api --cov=challenge3/
+  pytest --cov=challenge3/
 after_success:
   - coveralls
   - codeclimate
