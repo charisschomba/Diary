@@ -59,8 +59,8 @@ class Entries(Resource):
         else:
             total_entries = str(len(entries))
             all_user_entries = []
-            single_entry = {}
             for user_entries in entries:
+                single_entry = {}
                 single_entry["id"] = user_entries[0]
                 single_entry["date"] = user_entries[1]
                 single_entry["title"] = user_entries[2]

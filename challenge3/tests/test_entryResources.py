@@ -19,10 +19,10 @@ class Test_Entry_resources(unittest.TestCase):
         self.singin_url = '/mydiary/v1/auth/login'
         self.new_user = {"username":'test',
                          'email':'test11e1@camp.com',
-                         'password':'test111',
-                         'confirm_password':'test111'
+                         'password':'test1111',
+                         'confirm_password':'test1111'
                         }
-        self.user = {'email':'test11e1@camp.com', 'password':'test111',}
+        self.user = {'email':'test11e1@camp.com', 'password':'test1111',}
         self.new_entry = {'title':'Bootcamp', 'content':'It was a good experience'}
         self.new_entry2 = {'title':'Andela', 'content':'This is Andela'}
         self.new_entry3 = {'title':'Andelan', 'content':'This is Andela'}
