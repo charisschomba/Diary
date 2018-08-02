@@ -1,4 +1,5 @@
 # Online Diary V-2
+[![Build Status](https://travis-ci.org/charisschomba/Diary.svg?branch=travis)](https://travis-ci.org/charisschomba/Diary)
 [![Coverage Status](https://coveralls.io/repos/github/charisschomba/Diary/badge.svg?branch=Refactor-Tests)](https://coveralls.io/github/charisschomba/Diary?branch=Refactor-Tests)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b7ac2f6873e46be8bfc34ec0efbfd7f)](https://www.codacy.com/app/charisschomba/Diary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=charisschomba/Diary&amp;utm_campaign=Badge_Grade)
 
@@ -6,9 +7,9 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 
 Documentation: https://mydiaryrestapi.docs.apiary.io/
 
-Heroku Link: https://mydiary-v2.herokuapp.com/
+Heroku Link: https://online-diary-v1.herokuapp.com/
 
-Endpoints
+### Endpoints
 
 | Functionality        |    Method     |         Endpoint               |
 | :------------------- |:-------------:| ------------------------------:|
@@ -21,14 +22,14 @@ Endpoints
 | Login                | POST          | /mydiary/v1/auth/login         |
 
 
-Requirements
+### Requirements
 
 - [Python3](https://www.python.org/) (programming language)
 - [Flask](http://flask.pocoo.org/) (Python webframework)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)(To isolate Api modules)
 - [Pytest](https://docs.pytest.org/en/latest/) (Tool for testing)
 
-How to setup it up:
+### How to setup it up:
 
 To set it up in your machine:
 
@@ -36,26 +37,26 @@ To set it up in your machine:
 
 2.pip install virtualenv
 
-Clone this repository:
+### Clone this repository:
 
 git clone https://github.com/charisschomba/Diary.git
 
 cd Diary/challenge3/
 
-Create a virtual environment in the root directory:
+### Create a virtual environment in the root directory:
 
 virtualenv [name of virtualenv]
 
-Activate the virtualenv:
+### Activate the virtualenv:
 
 source [name of virtualenv]/bin/activate
 
-On your terminal run:
+### On your terminal run:
 
 pip install -r requirements.txt
 to install the modules
 
-switch to postgres user with;
+### switch to postgres user with;
 
 `sudo -i -u postgres` or `su postgres`
 
@@ -67,7 +68,7 @@ create user
 
 `psql -c "CREATE USER db_user WITH PASSWORD 'password' createdb" -U postgres`
 
-Cd to challenge3/app
+### Cd to challenge3/app
 
 run
 
@@ -75,7 +76,7 @@ python create_database.py
 
 to create the two tables required
 
-On your terminal run:
+### On your terminal run:
 
   `export FLASK_APP="run.py"`
 
@@ -93,28 +94,21 @@ On your terminal run:
 
   `export SECRET_KEY="any randomlongstring"`
 
-cd  challenge3/
+### cd  challenge3/
 
-Run the application:
+### Run the application:
 
 `flask run`
 
 use the above specified endpoints in the table for testing.
 
-Run the application:
+### To run tests:
 
 cd to Diary/challenge3 folder
 
-flask run
-
-
-use the above specified endpoints in the table for testing.
-
-To run tests:
-
 pytest
 
-run
+### run
 
 pylint
 
