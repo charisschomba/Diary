@@ -1,6 +1,4 @@
 # Online Diary V-2
-
-[![Build Status](https://travis-ci.org/charisschomba/Diary.svg?branch=Refactor-Tests)](https://travis-ci.org/charisschomba/Diary)
 [![Coverage Status](https://coveralls.io/repos/github/charisschomba/Diary/badge.svg?branch=Refactor-Tests)](https://coveralls.io/github/charisschomba/Diary?branch=Refactor-Tests)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4b7ac2f6873e46be8bfc34ec0efbfd7f)](https://www.codacy.com/app/charisschomba/Diary?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=charisschomba/Diary&amp;utm_campaign=Badge_Grade)
 
