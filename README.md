@@ -55,7 +55,7 @@ source [name of virtualenv]/bin/activate
 On your terminal run:
 
 pip install -r requirements.txt
-to install the modules
+to install the modules.
 
 On your terminal run:
 
