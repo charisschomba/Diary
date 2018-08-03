@@ -28,6 +28,7 @@ Heroku Link: https://online-diary-v1.herokuapp.com/
 - [Flask](http://flask.pocoo.org/) (Python webframework)
 - [Virtualenv](https://virtualenv.pypa.io/en/stable/)(To isolate Api modules)
 - [Pytest](https://docs.pytest.org/en/latest/) (Tool for testing)
+- [Postgresql](https://www.postgresql.org/download/) (Database used)
 
 ### How to setup it up:
 
@@ -41,7 +42,7 @@ To set it up in your machine:
 
 git clone https://github.com/charisschomba/Diary.git
 
-cd Diary/challenge3/
+cd Diary/
 
 ### Create a virtual environment in the root directory:
 
@@ -93,8 +94,6 @@ to create the two tables required
   `export DB_PASSWORD="password"`
 
   `export SECRET_KEY="any randomlongstring"`
-
-### cd  challenge3/
 
 ### Run the application:
 
