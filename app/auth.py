@@ -1,6 +1,5 @@
 from datetime import timedelta
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import create_access_token
 from app.models import User
 from app.security import token_required, encode_auth_token
 
