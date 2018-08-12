@@ -3,3 +3,8 @@
 *.pyc
 .coverage
 ven/
+.env
+ven/
+venv/
+.vscode
+
