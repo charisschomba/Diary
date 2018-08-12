@@ -40,7 +40,7 @@ class Entries(Resource):
             return{'message':"Title already exist, use a different one."}, 400
         else:
             try:
-                return{"message":Entry().save(entry)}, 201
+                return{"message":"successfully added","entry":Entry().save(entry)}, 201
             except:
                 return{'message':"An error occured try again"}, 500
 
@@ -67,7 +67,7 @@ class Entries(Resource):
                 single_entry["title"] = user_entries[2]
                 single_entry["content"] = user_entries[3]
                 all_user_entries.append(single_entry)
-                response = {"message":all_user_entries}
+                response = {"all_entries":all_user_entries}
             return response, 200
 
 class EntryList(Resource):
@@ -101,7 +101,7 @@ class EntryList(Resource):
         user_id = user_id[0]
         entry = Entry().get_by_id(entryId, user_id)
         if entry:
-            return {"message":entry[0]}, 200
+            return {"Entry fetched Successuflly":entry[0]}, 200
         return {'Message':"Entry requested does not exist"}, 404
 
     @staticmethod
