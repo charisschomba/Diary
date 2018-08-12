@@ -1,6 +1,5 @@
 from datetime import datetime, date
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import (get_jwt_identity, jwt_required)
 from app.models import Entry, User
 from app.security import token_required, encode_auth_token
 

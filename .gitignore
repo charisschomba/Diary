@@ -4,3 +4,5 @@
 .coverage
 .env
 ven/
+venv/
+.vscode
