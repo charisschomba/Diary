@@ -1,7 +1,7 @@
 from datetime import timedelta
 from flask_restful import Resource, reqparse
 from app.models import User
-from app.security import token_required, encode_auth_token
+from app.security import encode_auth_token
 
 class SingUp(Resource):
     """

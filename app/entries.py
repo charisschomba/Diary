@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from flask_restful import Resource, reqparse
-from app.models import Entry, User
-from app.security import token_required, encode_auth_token
+from app.models import Entry
+from app.security import token_required
 
 
 class Entries(Resource):
