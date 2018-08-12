@@ -1,7 +1,7 @@
 from datetime import timedelta
 from flask_restful import Resource, reqparse
-from flask_jwt_extended import create_access_token
 from app.models import User
+from app.security import encode_auth_token
 
 class SingUp(Resource):
     """
@@ -33,16 +33,16 @@ class SingUp(Resource):
         password = data['password']
         confirm_password = data['confirm_password']
         if not len(password) >= 8:
-            return{"Server Response":"Password length should altest 8 characters"}, 401
+            return{"message":"Password length should altest 8 characters"}, 401
         if not password == confirm_password:
             return {"message":"Double check your password"}, 400
         user = User().get_user_by_email(email)
         if email in str(user):
-            return{"Server Response":'User with email: {} exists'.format(email)}, 400
+            return{"message":'User with email: {} exists'.format(email)}, 400
         else:
             new_user = (username, email, password)
             User().save(new_user)
-            return{"Server Response":" Hello {}, your account was created".format(username).title()}, 201
+            return{"message":"Your account was created"}, 201
 
 class Login(Resource):
     """
@@ -65,10 +65,10 @@ class Login(Resource):
         password = data['password']
         db_email = User().match_email(email)
         if not db_email:
-            return {"Server Response":"User with email:'{}' does not exist".format(email)}, 400
+            return {"message":"User with email:'{}' does not exist".format(email)}, 400
         if User().verify_password(email, password):
             user_id = User().get_id_by_email(email)
-            exp = timedelta(minutes=1440)
-            access_token = create_access_token(identity=user_id, expires_delta=exp)
-            return {"Welcome to your personal diary, your access token is":access_token}, 200
-        return {"Server Response":"Your password was Incorrect, please double check it."}, 400
+            access_token = encode_auth_token(user_id)
+            print(access_token)
+            return {"message":"you logged in successfully","token":access_token}, 200
+        return {"message":"Your password was Incorrect, please double check it."}, 400

@@ -4,7 +4,7 @@ from app.models import ClearClass
 
 
 class Test_Entry_resources(unittest.TestCase):
-    key = "Welcome to your personal diary, your access token is"
+    key = "token"
     get_entries = '/mydiary/v1/entries'
     add_entry = '/mydiary/v1/entries'
     get_single = '/mydiary/v1/entries/1'
