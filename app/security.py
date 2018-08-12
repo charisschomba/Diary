@@ -36,9 +36,9 @@ def token_required(func):
                 user_id = payload['sub']
                 return func(user_id=user_id, *args, **kwargs)
         except jwt.ExpiredSignatureError:
-                return {"message":"Token has expired. Please login again"}, 400
+                return {"message":"Token has expired. Please login again"}, 401
 
         except jwt.InvalidTokenError:
-            return{"message":"Invalid token"}, 400
+            return{"message":"Invalid token"}, 401
 
     return decorated
