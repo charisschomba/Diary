@@ -147,8 +147,6 @@ class EntryList(Resource):
             entry_Date = Entry().entry_date(entryId)[0]
             today_date = date.today().strftime("%d-%m-%Y")
             if today_date == entry_Date:
-                if Entry().verify_title(title, user_id) == True:
-                    return{'message':"Title already exist, use a different one."}, 400
                 if owner:
                     Entry().update_entry(updated_data, entryId)
                     return{"message":"Entry Updated successfully"}, 200
