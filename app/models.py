@@ -193,12 +193,12 @@ class Entry():
             conn.rollback()
 
     @staticmethod
-    def update_entry(new_entry, entryId):
+    def update_entry(new_entry, entryId, set_favourite = False):
         """
         updates a user an entry if it exists with new data
         """
-        query = """UPDATE entries SET title = '{}',content= '{}'
-                   WHERE entries.id = {}""".format(new_entry[0], new_entry[1], entryId)
+        query = """UPDATE entries SET title = '{}',content= '{}', favourited= '{}'
+                   WHERE entries.id = {}""".format(new_entry[0], new_entry[1], new_entry[2], entryId)
         try:
             cur.execute(query)
             conn.commit()
@@ -209,7 +209,7 @@ class Entry():
         """
         This method fetches entries of a user
         """
-        query = """select entries.id,date,title,content from  entries
+        query = """select entries.id,date,title,content, favourited from  entries
                    inner join users on
                    entries.user_id=users.id WHERE users.id={}
                 """.format(user_id)

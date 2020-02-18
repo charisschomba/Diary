@@ -3,6 +3,31 @@ from flask_restful import Resource, reqparse
 from app.models import Entry
 from app.security import token_required
 
+class GetEntries(Resource):
+    @staticmethod
+    @token_required
+    def get(user_id):
+        """
+        Gets favourite entries
+        """
+        user_id = user_id[0]
+        entries = Entry().get_all_entries(user_id)
+        if len(entries) == 0:
+            return {"message": "Your diary is empty"}, 200
+        else:
+            all_user_entries = []
+            for user_entries in entries:
+                if user_entries[4]:
+                    single_entry = {}
+                    single_entry["id"] = user_entries[0]
+                    single_entry["date"] = user_entries[1]
+                    single_entry["title"] = user_entries[2]
+                    single_entry["content"] = user_entries[3]
+                    single_entry["favourited"] = user_entries[4]
+                    all_user_entries.append(single_entry)
+                    response = {"all_entries": all_user_entries}
+            return response, 200
+
 
 class Entries(Resource):
     """
@@ -11,6 +36,7 @@ class Entries(Resource):
     fetches all items from Entry model
 
     """
+
     def __init__(self):
         """This method initializes reqparse object """
         self.parser = reqparse.RequestParser()
@@ -18,11 +44,12 @@ class Entries(Resource):
         self.parser.add_argument('title',
                                  type=str, required=True,
                                  help='Title is required!'
-                                )
+                                 )
         self.parser.add_argument('content',
                                  type=str, required=True,
                                  help="Content is required"
-                                )
+                                 )
+
     @token_required
     def post(self, user_id):
         """
@@ -37,12 +64,12 @@ class Entries(Resource):
         content = data['content']
         entry = (user_id, date, title, content)
         if Entry().verify_title(title, user_id) == True:
-            return{'message':"Title already exist, use a different one."}, 400
+            return {'message': "Title already exist, use a different one."}, 400
         else:
             try:
-                return{"message":"successfully added","entry":Entry().save(entry)}, 201
+                return {"message": "successfully added", "entry": Entry().save(entry)}, 201
             except:
-                return{'message':"An error occured try again"}, 500
+                return {'message': "An error occured try again"}, 500
 
     @staticmethod
     @token_required
@@ -54,9 +81,8 @@ class Entries(Resource):
         # """
         user_id = user_id[0]
         entries = Entry().get_all_entries(user_id)
-        print(entries)
         if len(entries) == 0:
-            return {"message":"Your diary is empty"}, 200
+            return {"message": "Your diary is empty"}, 200
         else:
             total_entries = str(len(entries))
             all_user_entries = []
@@ -66,9 +92,11 @@ class Entries(Resource):
                 single_entry["date"] = user_entries[1]
                 single_entry["title"] = user_entries[2]
                 single_entry["content"] = user_entries[3]
+                single_entry["favourited"] = user_entries[4]
                 all_user_entries.append(single_entry)
-                response = {"all_entries":all_user_entries}
+                response = {"all_entries": all_user_entries}
             return response, 200
+
 
 class EntryList(Resource):
     """
@@ -85,12 +113,16 @@ class EntryList(Resource):
                                  type=str,
                                  required=True,
                                  help='No enty title provided',
-                                )
+                                 )
         self.parser.add_argument('content',
                                  type=str,
                                  required=True,
                                  help='No entry content provided'
-                                )
+                                 )
+        self.parser.add_argument('favourited',
+                                 type=bool,
+                                 required=False,
+                                 )
 
     @staticmethod
     @token_required
@@ -101,8 +133,8 @@ class EntryList(Resource):
         user_id = user_id[0]
         entry = Entry().get_by_id(entryId, user_id)
         if entry:
-            return {"Entry fetched Successuflly":entry[0]}, 200
-        return {'Message':"Entry requested does not exist"}, 404
+            return {"Entry fetched Successuflly": entry[0]}, 200
+        return {'Message': "Entry requested does not exist"}, 404
 
     @staticmethod
     @token_required
@@ -116,16 +148,16 @@ class EntryList(Resource):
         try:
             entry_id = Entry().get_entry_id(entryId)
             if entry_id is None:
-                return {'message':"Entry does not exist"}, 404
+                return {'message': "Entry does not exist"}, 404
             owner = Entry().verify_entry_owner(entryId, user_id)
             if owner:
                 Entry().delete_entry(entryId)
-                return {'message':'Your entry was successfully deleted'}, 200
+                return {'message': 'Your entry was successfully deleted'}, 200
             else:
-                return{"message":"You  are not allowed to delete this entry"}, 403
+                return {"message": "You  are not allowed to delete this entry"}, 403
 
         except:
-            return{"message":"An error occured while processing your request."}, 500
+            return {"message": "An error occured while processing your request."}, 500
 
     @token_required
     def put(self, user_id, entryId):
@@ -139,20 +171,16 @@ class EntryList(Resource):
         data = self.parser.parse_args()
         title = data['title']
         content = data['content']
-        updated_data = (title, content)
+        favourited = data['favourited']
+        updated_data = (title, content, favourited)
         entry = Entry().get_entry_id(entryId)
         if entry is None:
-            return {'message':"Entry does not exist"}, 404
+            return {'message': "Entry does not exist"}, 404
         if entry:
             entry_Date = Entry().entry_date(entryId)[0]
             today_date = date.today().strftime("%d-%m-%Y")
-            if today_date == entry_Date:
-                if owner:
-                    Entry().update_entry(updated_data, entryId)
-                    return{"message":"Entry Updated successfully"}, 200
-                else:
-                    return{"message":"You are not allowed to update this entry"}, 403
+            if owner:
+                Entry().update_entry(updated_data, entryId)
+                return{"message":"Entry Updated successfully"}, 200
             else:
-                return{'message':'Entry cannot be updated because it was not created today'}, 400
-
-
+                return {"message": "You are not allowed to update this entry"}, 403

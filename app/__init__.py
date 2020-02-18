@@ -6,7 +6,7 @@ from flask_restful import Api, Resource
 from flask_cors import CORS
 from config import app_config
 from app.auth import SingUp, Login
-from app.entries import Entries, EntryList
+from app.entries import Entries, EntryList, GetEntries
 
 def create_app(config_name):
     "This function creates the app and returns it"
@@ -18,6 +18,7 @@ def create_app(config_name):
     api.add_resource(Login, '/mydiary/v1/auth/login')
     api.add_resource(Entries, '/mydiary/v1/entries')
     api.add_resource(EntryList, '/mydiary/v1/entries/<int:entryId>')
+    api.add_resource(GetEntries, '/mydiary/v1/entries/favourite')
 
     @app.route("/")
     def index():

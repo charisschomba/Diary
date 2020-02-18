@@ -27,6 +27,7 @@ def create_entries_table(cursor):
             date VARCHAR(20),
             title VARCHAR(255) NOT NULL,
             content TEXT NOT NULL,
+            favourited BOOlEAN DEFAULT false ,
             PRIMARY KEY (user_id,id),
             FOREIGN KEY (user_id)
             REFERENCES users (id)
